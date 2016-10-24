@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Bird's Eye{% endblock %}
+{% block body %}
+  <div id="container">
+    <div id="tag-nav">
+      <div class="tag-nav">
+        <ul>
+        {% for tag in tags %}
+          <li class="gr-tag-selector {{tag.color}}" color="{{tag.color}}" tid="{{tag.tagType}}">{{tag.name}}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <img src="/static/speech-bubble.png" id="speeeechbubble"/>
+    <style type="text/css">
+        #speeeechbubble{
+            position:absolute;
+            display:none;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            $("#bird").click(function(event){
+                $("#speeeechbubble").fadeIn(300).css({"left":event.pageX,
+                "top":event.pageY-130})
+            }
+        );
+        });
+    </script>
+
+     <div id="bird">
+         <img src="/static/s2/overview-chart.png" />
+      </div>
+
+      <div id="idea-pond">
+          <div style="text-align:center; font-size:1.7em"><b>insight pool</b></div>
+
+          <div class="idea-box">
+             <hr>
+             <div class="idea"> “There seems to be an emerging pattern around ease of use and simplicity.
+               Bolus calculations are not intuitive.” </div>
+              <div class="tagger-name"> Lola A.</div>
+              <hr>
+              <div class="idea"> “Info dissemination: Word of mouth > official channels”  </div>
+               <div class="tagger-name"> Lola A.</div>
+                 <hr>
+               <div class="idea">“How might we habituate positive behaviors for users like Janice?”  </div>
+                <div class="tagger-name"> Lola A.</div>
+                <hr>
+                <div class="idea">“Need to approach concepting differently for Types 1 and Type 2 Diabetes archetypes.”   </div>
+                 <div class="tagger-name"> Lola A.</div>
+
+         </div>
+     </div>
+{% endblock %}

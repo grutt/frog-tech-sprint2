@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block body %}
+  <div id="container">
+    <div id="tag-nav">
+      <div class="tag-nav">
+        <ul>
+        {% for tag in tags %}
+          <li class="gr-tag-selector {{tag.color}}" color="{{tag.color}}" tid="{{tag.tagType}}">{{tag.name}}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+
+
+     <div id="insight-pond">
+
+       <div class="idea-view dashy">
+
+             {%for blurb in blurbs%}
+
+            <div class="insight-box
+                         {%for tag in blurb.tags%}
+                         gr-in-tag{{tag}}
+                         {%endfor%}
+                         ">
+
+                <div class="insight" bid="{{blurb.bid}}" style="padding:5px; text-align:right;">
+                       {{blurb.blurb}}<br />
+                       <a href="{{url_for('respondent')}}?rid={{blurb.rid.rid}}">-{{blurb.rid.name}}</a>
+                </div>
+              <div class="tags hide">
+              {%for tag in tags%}
+              {%if tag.tagType not in blurb.tags%}
+              <span class="{{tag.color}}" bid="{{blurb.bid}}" color="{{tag.color}}" tagType="{{tag.tagType}}">{{tag.name}}</span>
+              {%else%}
+              <span class="{{tag.color}} tagged tagged{{tag.color}}" bid="{{blurb.bid}}" color="{{tag.color}}" tagType="{{tag.tagType}}">{{tag.name}}</span>
+              {%endif%}
+              {%endfor%}
+              <span>+</span>
+              <div class="comments" bid="{{blurb.bid}}">
+              {%for comment in blurb.comments%}
+                 <div class="comment">
+                     <span class="user" uid="{{comment.uid}}">{{comment.user.name}}</span>:
+                     {{comment.blurb}}
+
+                 </div>
+              {%endfor%}
+          </div>
+
+                   <form action="{{url_for('postComment')}}" method="POST" class="form-inline commentForm">
+                       <input style="width:100%; max-width:800px;" type="text" class="form-control" placeholder="comment..." name="blurb" />
+                       <input type="hidden" name="bid" value="{{blurb.bid}}"/>
+                   </form>
+                 </div>
+             </div>
+
+               {%endfor%}
+
+         </div>
+
+      </div>
+
+      <div id="idea-pond">
+          <div style="text-align:center; font-size:1.7em"><b>insight pool</b></div>
+
+          <div class="idea-box">
+             <hr>
+             <div class="idea"> “There seems to be an emerging pattern around ease of use and simplicity.
+               Bolus calculations are not intuitive.” </div>
+              <div class="tagger-name"> Lola A.</div>
+              <hr>
+              <div class="idea"> “Info dissemination: Word of mouth > official channels”  </div>
+               <div class="tagger-name"> Lola A.</div>
+                 <hr>
+               <div class="idea">“How might we habituate positive behaviors for users like Janice?”  </div>
+                <div class="tagger-name"> Lola A.</div>
+                <hr>
+                <div class="idea">“Need to approach concepting differently for Types 1 and Type 2 Diabetes archetypes.”   </div>
+                 <div class="tagger-name"> Lola A.</div>
+
+         </div>
+     </div>
+{% endblock %}

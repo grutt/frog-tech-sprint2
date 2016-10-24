@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block title %}{{respondent.name}}{% endblock %}
+{% block body %}
+
+
+<style type="text/css">
+#respondentDetails {
+  width: 100%;
+  background: #ededed;
+}
+
+#transcript {
+  background-color: white;
+}
+
+#transcript .insight-box {
+  border: none;
+}
+
+.insight{
+    cursor:move;
+}
+.idea{
+    -webkit-transition: background-color 0.8s;
+      -moz-transition: background-color 0.8s;
+      transition: background-color 0.8s;
+      background-color: white;
+      cursor:pointer;
+}
+.dropped{
+    background-color:green;
+}
+.drop-hover{
+    background-color:pink;
+}
+
+.tags{
+    padding:10px 0px;
+    display: none;
+}
+.tags span{
+    padding:5px;
+    border-radius: 5px;
+    cursor:pointer;
+    -webkit-transition: background-color 0.8s;
+      -moz-transition: background-color 0.8s;
+      transition: background-color 0.8s;
+  }
+.tagged{
+    color:white;
+    background-color: black;
+}
+</style>
+
+
+
+  <div id="container">
+
+     <div id="transcript">
+       <div id="respondentDetails" style="clear:both;">
+           <img src="/static/s2/photos/rid{{respondent.rid}}.jpg"/>
+           <h1>{{respondent.name}}</h1>
+           <h3>{{respondent.details}}</h3>
+       </div>
+    {%for blurb in transcript.blurbs%}
+    {%if blurb.uid < 0%}
+       <div class="idea-view">
+         <div class="insight-box">
+             <div class="insight" bid="{{blurb.bid}}">
+                 {{blurb.blurb}}
+             </div>
+
+
+        <div class="tags">
+        {%for tag in tags%}
+        {%if tag.tagType not in blurb.tags%}
+        <span class="{{tag.color}}" bid="{{blurb.bid}}" color="{{tag.color}}" tagType="{{tag.tagType}}">{{tag.name}}</span>
+        {%else%}
+        <span class="{{tag.color}} tagged tagged{{tag.color}}" bid="{{blurb.bid}}" color="{{tag.color}}" tagType="{{tag.tagType}}">{{tag.name}}</span>
+        {%endif%}
+        {%endfor%}
+        <span>+</span>
+
+        <div class="comments" bid="{{blurb.bid}}">
+        {%for comment in blurb.comments%}
+           <div class="comment">
+               {{comment.blurb}}
+               <div class="user" uid="{{comment.uid}}">{{comment.user.name}}</div>
+           </div>
+        {%endfor%}
+
+    </div>
+
+             <form action="{{url_for('postComment')}}" method="POST" class="form-inline commentForm">
+                 <input type="text" class="form-control" placeholder="comment..." name="blurb" />
+                 <input type="hidden" name="bid" value="{{blurb.bid}}"/>
+                 <button type="submit" class="btn btn-primary">&gt;</button>
+
+             </form>
+
+           </div>
+         </div>
+    {%else%}
+        <div class="question">
+            {{blurb.blurb}}
+        </div>
+    {%endif%}
+    {%endfor%}
+     </div>
+      </div>
+
+
+
+     <div id="idea-pond">
+         <input type="text">
+
+         <div class="idea-box">
+            <hr>
+            <div class="idea"> "I used to go to this place called Gem 100 as a kid.
+             They had this bubble gum ice cream with real bubble gum nuggets in it." </div>
+             <div class="tagger-name"> Lola A.</div>
+             <hr>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+# /postComment method = POST
+hid
+blurb
+returns JSON
+{"blurb": "poop", "uid": 1, "cid": 2, "hid": 3}
+
+# /setTag method = GET
+tagType integer
+hid integer
+returns JSON
+{"uid": 1, "tagType": 3, "tagId": 5, "hid": 3}
+
+# /highlightsByTagType

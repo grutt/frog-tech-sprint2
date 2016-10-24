@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+
+  <script>
+    $(function(){
+    $(".tag-button").click(function(){
+        $("#bubble").removeClass('red-bg');
+        $("#bubble").removeClass('orange-bg');
+        $("#bubble").removeClass('blue-bg');
+        $("#bubble").removeClass('green-bg');
+        $("#bubble").removeClass('purple-bg');
+        $("#bubble").addClass($(this).attr('color'));
+        setTimeout(function(){
+            $("#bubble").removeClass('red-bg');},700);
+        setTimeout(function(){
+            $("#bubble").removeClass('orange-bg');},700);
+        setTimeout(function(){
+            $("#bubble").removeClass('blue-bg');},700);
+        setTimeout(function(){
+            $("#bubble").removeClass('green-bg');},700);
+        setTimeout(function(){
+            $("#bubble").removeClass('purple-bg');},700);
+        });
+      });
+  </script>
+
+
+
+<style>
+
+body {
+  font-family: helvetica;
+}
+
+#bubble {
+
+    transition-duration: 0.3s;
+    }
+
+    .test.blueDisplay{
+        background-color: blue;
+    }
+
+    .respondent-photo {
+      border-radius: 50%;
+    }
+
+  .respondent-profile {
+      margin-left: 0%;
+      width: 100%;
+      font-size:0;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+      backface-visibility: hidden;
+      will-change: overflow;
+    background: #ededed;}
+
+
+  .respondent-photo,.respondent-info {display: inline-block;
+    *display: inline; vertical-align:
+      top; font-size: 16px;
+       height: 200px;
+       width: 100%;
+       padding: .5rem;
+    }
+
+  .respondent-photo{padding: 10px; width: 200px; background: white;}
+  .respondent-info {font-size: 16px; padding: 10px; }
+  .respondent-name {font-size: 36px; font-weight: bolder;padding: 10px;}
+  .respondent-description {font-size: 36px; padding: 10px;}
+
+.transcript-view {
+  padding: 5%;
+  font-size: 16px;
+  width: 100%;
+}
+
+.researcher-q, .respondent-a{
+  width: 85%;
+  padding: 20px;
+}
+
+.researcher-q {
+font-size: 12px;
+}
+
+.respondent-a {
+  font-weight: bolder;
+}
+
+
+.interview-begin{
+    margin-left: 0%;
+    width: 100%;
+    font-size:0;
+    display: flex;
+    position: relative;
+    backface-visibility: hidden;
+    will-change: overflow;}
+
+
+.interview-by,.time {
+    display: inline-block;
+    *display: inline;
+    vertical-align:
+    top;
+    font-size: 26px;
+    width: 80%;
+    padding: .5rem;
+  }
+
+.interview-by{width: 50%;}
+.time {width: 30%; text-align: right;}
+.interview-by-line{width: 80%}
+
+.tag-button {
+  text-align: center;
+  padding-top: 55px;
+  padding-bottom: 55px;
+  font-size: 80px;
+  background-color: yellow;
+  width: 100%;
+  height: 50%;
+}
+
+.red-bg {background-color:#FF510C}
+.green-bg {background-color:#B8E986}
+.blue-bg {background-color:#62E5C8}
+.purple-bg {background-color:#BD10E0}
+.orange-bg {background-color: #F5A623}
+.black-bg {background-color: black}
+
+      </style>
+    <meta charset="utf-8">
+    <title>mobile screen</title>
+</head>
+
+
+
+
+<body>
+
+<div id="bubble">
+    <img src="/static/mobile/mobile-header3-01.png" style="width:100%" />
+</div>
+
+
+
+  <div class="tag-buttons">
+    <div color="green-bg" class="tag-button green-bg">ecosystem</div>
+    <div color="red-bg" class="tag-button red-bg">pain point</div>
+    <div color="orange-bg" class="tag-button orange-bg">journey</div>
+    <div color="purple-bg" class="tag-button purple-bg">observation</div>
+    <div color="blue-bg" class="tag-button blue-bg">archetype</div>
+    <div class="column-left"><div class="column-right">
+
+  </div>
+</body>
+</html>
